@@ -2,9 +2,19 @@ console.log('***** Music Collection *****')
 // Safe Zone -- Write code below this line
 myCollection = [];
 
+function addToCollection(collection, title, artist, yearPublished) {
+  let albumToAdd = {
+    title: title,
+    artist: artist,
+    yearPublished: yearPublished
+  }
+  collection.push(albumToAdd);
+  console.log(albumToAdd);
+  return albumToAdd;
+}
 
-
-
+addToCollection(myCollection, 'The Joshua Tree', 'U2', 1987);
+console.log(myCollection);
 
 
 

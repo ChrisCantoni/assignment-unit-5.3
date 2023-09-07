@@ -37,6 +37,19 @@ function showCollection(musicCollection) {
 }
 showCollection(myCollection);
 
+// Function to search for specific artist
+function findByArtist(musicCollection, artist) {
+  let matchingArtist = [];
+  for (let album of musicCollection) {
+    if (album.artist == artist) {
+      matchingArtist.push(album);
+    }
+  } console.log(matchingArtist); 
+  return matchingArtist;
+}
+findByArtist(myCollection, 'U2');
+findByArtist(myCollection, 'Run the Jewels');
+
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
 // as a lil' chunk of friendly code that you don't need to understand right now.
 // (It's used for automated testing.)

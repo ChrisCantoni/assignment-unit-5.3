@@ -5,19 +5,21 @@ console.log('***** Music Collection *****')
 myCollection = [];
 
 // Function to add albums to the array
-function addToCollection(collection, title, artist, yearPublished) {
+function addToCollection(collection, title, artist, yearPublished, tracks) {
   let albumToAdd = {
     title: title,
     artist: artist,
-    yearPublished: yearPublished
+    yearPublished: yearPublished,
+    tracks: tracks
   }
   collection.push(albumToAdd);
   return albumToAdd;
 }
 
 // Albums added to array
-addToCollection(myCollection, 'The Joshua Tree', 'U2', 1987);
+addToCollection(myCollection, 'The Joshua Tree', 'U2', 1987, [{track1: 'Where the Streets Have No Name', duration: '3:37'}]);
 addToCollection(myCollection, 'OK Computer', 'Radiohead', 1997);
+addToCollection(myCollection, 'No Longer OK Computer', 'Radiohead', 1997);
 addToCollection(myCollection, 'Whatever and Ever Amen', 'Ben Folds Five', 1997);
 addToCollection(myCollection, "All That You Can't Leave Behind", 'U2', 2000);
 addToCollection(myCollection, 'Yankee Hotel Foxtrot', 'Wilco', 2002);
@@ -27,12 +29,13 @@ addToCollection(myCollection, 'folklore', 'Taylor Swift', 2020);
 addToCollection(myCollection, 'RTJ4', 'Run the Jewels', 2020);
 addToCollection(myCollection, 'Mr. Morale & the Big Steppers', 'Kendrick Lamar', 2022);
 
-console.log(myCollection);
+console.log(myCollection[0]);
 
 // Function to iterate over the collection and return each album and its info
 function showCollection(musicCollection) {
   for (let album of musicCollection) {
-    console.log(`${album.title} by ${album.artist}, published in ${album.yearPublished}`);
+    console.log(`${album.title} by ${album.artist}, published in ${album.yearPublished}
+    1. ${album.tracks[0].track1}`);
   }
 }
 showCollection(myCollection);
@@ -49,6 +52,27 @@ function findByArtist(musicCollection, artist) {
 }
 findByArtist(myCollection, 'U2');
 findByArtist(myCollection, 'Run the Jewels');
+
+// Stretch - Search Function
+let searchVariable = {
+  artist: 'Radiohead',
+  yearPublished: 1997
+};
+
+function search(musicCollection, searchCriteria) {
+  let matchingArtist = [];
+  for (let i = 0; i < musicCollection.length; i++) {
+    if (musicCollection[i].artist == searchCriteria.artist && musicCollection[i].yearPublished == searchCriteria.yearPublished) {
+      matchingArtist.push(searchCriteria);
+    } else if (searchCriteria == undefined || searchCriteria.artist == undefined || searchCriteria.yearPublished == undefined) {
+      console.log('Your search is broken');
+      return musicCollection;
+    } 
+   } console.log('The matching artist is', matchingArtist); 
+    return matchingArtist;
+  
+}
+search(myCollection, searchVariable);
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
 // as a lil' chunk of friendly code that you don't need to understand right now.

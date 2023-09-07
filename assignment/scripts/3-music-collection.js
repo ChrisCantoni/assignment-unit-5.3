@@ -1,7 +1,10 @@
 console.log('***** Music Collection *****')
 // Safe Zone -- Write code below this line
+
+// My Array
 myCollection = [];
 
+// Function to add albums to the array
 function addToCollection(collection, title, artist, yearPublished) {
   let albumToAdd = {
     title: title,
@@ -12,6 +15,7 @@ function addToCollection(collection, title, artist, yearPublished) {
   return albumToAdd;
 }
 
+// Albums added to array
 addToCollection(myCollection, 'The Joshua Tree', 'U2', 1987);
 addToCollection(myCollection, 'OK Computer', 'Radiohead', 1997);
 addToCollection(myCollection, 'Whatever and Ever Amen', 'Ben Folds Five', 1997);
@@ -25,6 +29,13 @@ addToCollection(myCollection, 'Mr. Morale & the Big Steppers', 'Kendrick Lamar',
 
 console.log(myCollection);
 
+// Function to iterate over the collection and return each album and its info
+function showCollection(musicCollection) {
+  for (let album of musicCollection) {
+    console.log(`${album.title} by ${album.artist}, published in ${album.yearPublished}`);
+  }
+}
+showCollection(myCollection);
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
 // as a lil' chunk of friendly code that you don't need to understand right now.

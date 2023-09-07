@@ -9,15 +9,21 @@ function addToCollection(collection, title, artist, yearPublished) {
     yearPublished: yearPublished
   }
   collection.push(albumToAdd);
-  console.log(albumToAdd);
   return albumToAdd;
 }
 
 addToCollection(myCollection, 'The Joshua Tree', 'U2', 1987);
+addToCollection(myCollection, 'OK Computer', 'Radiohead', 1997);
+addToCollection(myCollection, 'Whatever and Ever Amen', 'Ben Folds Five', 1997);
+addToCollection(myCollection, "All That You Can't Leave Behind", 'U2', 2000);
+addToCollection(myCollection, 'Yankee Hotel Foxtrot', 'Wilco', 2002);
+addToCollection(myCollection, 'The Rising', 'Bruce Springsteen', 2002);
+addToCollection(myCollection, 'The Second Gleam', 'The Avett Brothers', 2006);
+addToCollection(myCollection, 'folklore', 'Taylor Swift', 2020);
+addToCollection(myCollection, 'RTJ4', 'Run the Jewels', 2020);
+addToCollection(myCollection, 'Mr. Morale & the Big Steppers', 'Kendrick Lamar', 2022);
+
 console.log(myCollection);
-
-
-
 
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it

@@ -17,10 +17,19 @@ function addToCollection(collection, title, artist, yearPublished, tracks) {
 }
 
 // Albums added to array
-console.log(addToCollection(myCollection, 'The Joshua Tree', 'U2', 1987, [{name: 'Where the Streets Have No Name', duration: '3:37'}, {track: 'Bullet the Blue Sky', duration: '3:24'}]));
-// addToCollection(myCollection, 'OK Computer', 'Radiohead', 1997);
-// addToCollection(myCollection, 'No Longer OK Computer', 'Radiohead', 1997);
-// addToCollection(myCollection, 'Whatever and Ever Amen', 'Ben Folds Five', 1997);
+console.log(addToCollection(myCollection, 'The Joshua Tree', 'U2', 1987, [{trackName: 'Where the Streets Have No Name', duration: '5:38'}, 
+{trackName: "I Still Haven't Found What I'm Looking For", duration: '4:38'}, 
+{trackName: 'With or Without You', duration: '4:56'},
+{trackName: 'Bullet the Blue Sky', duration: '4:32'}]));
+addToCollection(myCollection, 'OK Computer', 'Radiohead', 1997, [{trackName: 'Airbag', duration: '4:44'},
+{trackName: 'Paranoid Android', duration: '6:23'},
+{trackName: 'Subterranean Homesick Alien', duration: '4:27'},
+{trackName: 'Exit Music', duration: '4:24'}]);
+//addToCollection(myCollection, 'No Longer OK Computer', 'Radiohead', 1997);
+addToCollection(myCollection, 'Whatever and Ever Amen', 'Ben Folds Five', 1997, [{trackName: 'One Angry Dwarf', duration: '3:52'},
+{trackName: 'Fair', duration: '5:55'},
+{trackName: 'Brick', duration: '4:43'},
+{trackName: 'Song for the Dumped', duration: '3:41'}]);
 // addToCollection(myCollection, "All That You Can't Leave Behind", 'U2', 2000);
 // addToCollection(myCollection, 'Yankee Hotel Foxtrot', 'Wilco', 2002);
 // addToCollection(myCollection, 'The Rising', 'Bruce Springsteen', 2002);
@@ -34,8 +43,14 @@ console.log(addToCollection(myCollection, 'The Joshua Tree', 'U2', 1987, [{name:
 // Function to iterate over the collection and return each album and its info
 function showCollection(musicCollection) {
   for (let album of musicCollection) {
-    console.log(`${album.title} by ${album.artist}, published in ${album.yearPublished}
-    ${album.tracks.length - 1}. ${album.tracks[0]}`);
+    // We need an i and a j to loop through.
+    let i = 0;
+    let tracks = album.tracks;
+    
+    for (let j = 0; j < tracks.length; j++) {
+      console.log(`${album.title} by ${album.artist}, published in ${album.yearPublished}
+     ${tracks[j].trackName}: ${tracks[j].duration}`);
+     } i++;
   }
 }
 showCollection(myCollection);
@@ -54,25 +69,25 @@ findByArtist(myCollection, 'U2');
 //findByArtist(myCollection, 'Run the Jewels');
 
 // Stretch - Search Function
-// let searchVariable = {
-//   artist: 'Radiohead',
-//   yearPublished: 1997
-// };
+let searchVariable = {
+  artist: 'Radiohead',
+  yearPublished: 1997
+};
 
-// function search(musicCollection, searchCriteria) {
-//   let matchingArtist = [];
-//   for (let i = 0; i < musicCollection.length; i++) {
-//     if (musicCollection[i].artist == searchCriteria.artist && musicCollection[i].yearPublished == searchCriteria.yearPublished) {
-//       matchingArtist.push(searchCriteria);
-//     } else if (searchCriteria == undefined || searchCriteria.artist == undefined || searchCriteria.yearPublished == undefined) {
-//       console.log('Your search is broken');
-//       return musicCollection;
-//     } 
-//    } console.log('The matching artist is', matchingArtist); 
-//     return matchingArtist;
+function search(musicCollection, searchCriteria) {
+  let matchingArtist = [];
+  for (let i = 0; i < musicCollection.length; i++) {
+    if (musicCollection[i].artist == searchCriteria.artist && musicCollection[i].yearPublished == searchCriteria.yearPublished) {
+      matchingArtist.push(searchCriteria);
+    } else if (searchCriteria == undefined || searchCriteria.artist == undefined || searchCriteria.yearPublished == undefined) {
+      console.log('Your search is broken');
+      return musicCollection;
+    } 
+   } console.log('The matching artist is', matchingArtist); 
+    return matchingArtist;
   
-// }
-// search(myCollection, searchVariable);
+}
+search(myCollection, searchVariable);
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
 // as a lil' chunk of friendly code that you don't need to understand right now.
@@ -88,3 +103,19 @@ try {
 } catch (e) {
   // Do nothing
 }
+
+// [{trackName: 'Where the Streets Have No Name', duration: '5:38'}, 
+// {trackName: "I Still Haven't Found What I'm Looking For", duration: '4:38'}, 
+// {trackName: 'With or Without You', duration: '4:56'},
+// {trackName: 'Bullet the Blue Sky', duration: '4:32'}]
+
+
+// [{trackName: 'Airbag', duration: '4:44'},
+// {trackName: 'Paranoid Android', duration: '6:23'},
+// {trackName: 'Subterranean Homesick Alien', duration: '4:27'},
+// {trackName: 'Exit Music', duration: '4:24'}]
+
+// [{trackName: 'One Angry Dwarf', duration: '3:52'},
+// {trackName: 'Fair', duration: '5:55'},
+// {trackName: 'Brick', duration: '4:43'},
+// {trackName: 'Song for the Dumped', duration: '3:41'}]

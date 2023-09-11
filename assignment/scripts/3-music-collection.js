@@ -43,16 +43,17 @@ addToCollection(myCollection, 'Whatever and Ever Amen', 'Ben Folds Five', 1997, 
 // Function to iterate over the collection and return each album and its info
 function showCollection(musicCollection) {
   let tracks = [];
-  let trackNumber = 0;
   for (let album of musicCollection) {
+    let trackNumber = 0
     for (let track of album.tracks) {
-      tracks.push(track.trackName);
-      tracks.push(track.duration);
+      trackNumber++;
+      tracks.push(trackNumber, `. `);
+      tracks.push(track.trackName, `: `);
+      tracks.push(track.duration); 
+      tracks.push(`\n`);
    } 
-   trackNumber++;
-   console.log(`${album.title} by ${album.artist}, published in ${album.yearPublished},
-    ${trackNumber}. ${tracks.join(`\n `)}`);
-    trackNumber++;
+   console.log(`${album.title} by ${album.artist}, published in ${album.yearPublished}:
+  ${tracks.join('')} \n`);
     tracks = [];
   }
     

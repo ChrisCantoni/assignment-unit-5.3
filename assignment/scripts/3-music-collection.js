@@ -4,6 +4,8 @@ console.log('***** Music Collection *****')
 // My Array
 myCollection = [];
 
+// All assignments pass according to my console logs!
+
 // Function to add albums to the array
 function addToCollection(collection, title, artist, yearPublished, tracks) {
   let albumToAdd = {
@@ -17,6 +19,7 @@ function addToCollection(collection, title, artist, yearPublished, tracks) {
 }
 
 // Albums added to array
+// In hindsight I should have picked albums with fewer tracks :D
 addToCollection(myCollection, 'The Joshua Tree', 'U2', 1987, [{trackName: 'Where the Streets Have No Name', duration: '5:38'}, 
 {trackName: "I Still Haven't Found What I'm Looking For", duration: '4:38'}, 
 {trackName: 'With or Without You', duration: '4:56'},
@@ -123,7 +126,7 @@ function showCollection(musicCollection) {
       tracks.push(`\n`);
    } 
    console.log(`${album.title} by ${album.artist}, published in ${album.yearPublished}:
-  ${tracks.join('')} \n`);
+  ${tracks.join('')} \n`); // logs the fully assembled album array!
     tracks = []; // Resets the track list to zero for the next album.
   }
     
@@ -135,13 +138,13 @@ function findByArtist(musicCollection, artist) {
   let matchingArtist = [];
   for (let album of musicCollection) {
     if (album.artist == artist) {
-      matchingArtist.push(album);
+      matchingArtist.push(album); // collects any matches into the array
     }
   } if (matchingArtist.length != 0) {
-    console.log(`Here's what we found that matched ${artist}:`, matchingArtist);
+    console.log(`Here's what we found that matched ${artist}:`, matchingArtist); // If the array found any matches
     return matchingArtist;
   } else {
-    console.log("The collection doesn't contain your selected artist", artist);
+    console.log("The collection doesn't contain your selected artist", artist); // If they're not found
     return matchingArtist;
   }
 }
@@ -149,6 +152,8 @@ findByArtist(myCollection, 'U2');
 findByArtist(myCollection, 'Run the Jewels');
 
 // Stretch - Search Function
+
+// Made up search variables for testing
 let searchVariable = {
   artist: 'Radiohead',
   yearPublished: 1997
@@ -162,10 +167,14 @@ let searchTrackName = {
   yearPublished: 2022,
   trackName: 'Count Me Out'
 }
+let searchNotFound = {
+  artist: 'Goob'
+}
 
 // Test doesn't like my search function but it does work!
 function search(musicCollection, searchCriteria) {
   let matchingArtist = [];
+  // First checking for trackName property
   if (searchCriteria.trackName) {
     for (let i = 0; i < musicCollection.length; i++) {
       for (let j = 0; j < musicCollection[i].tracks.length; j++) {
@@ -176,6 +185,7 @@ function search(musicCollection, searchCriteria) {
     } console.log('Here are all the tracks that match that name!')
       return matchingArtist;
   } else {
+    // If no trackName, searching through the collection for the other search criteria
       for (let i = 0; i < musicCollection.length; i++) {
         if (searchCriteria == undefined || searchCriteria.artist == undefined || searchCriteria.yearPublished == undefined) {
             console.log('Your search encountered an error');
@@ -192,6 +202,8 @@ console.log('This array should be empty', search(myCollection, searchVariable2))
 // Edited the Joshua Tree to contain a track of the same name to test search function. Works great!
 // I also had each search return the entire album since if you already know the name of the song you don't need it returned to you.
 console.log(`This found all tracks that match criteria (Track 'Count Me Out')`, search(myCollection, searchTrackName));
+// Should trigger error message
+console.log(`This shouldn't match anything and should return the full collection`, search(myCollection, searchNotFound)); 
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
 // as a lil' chunk of friendly code that you don't need to understand right now.

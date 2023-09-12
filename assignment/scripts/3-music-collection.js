@@ -1,7 +1,6 @@
 console.log('***** Music Collection *****')
 // Safe Zone -- Write code below this line
 
-
 // My Array
 myCollection = [];
 
@@ -21,7 +20,7 @@ function addToCollection(collection, title, artist, yearPublished, tracks) {
 addToCollection(myCollection, 'The Joshua Tree', 'U2', 1987, [{trackName: 'Where the Streets Have No Name', duration: '5:38'}, 
 {trackName: "I Still Haven't Found What I'm Looking For", duration: '4:38'}, 
 {trackName: 'With or Without You', duration: '4:56'},
-{trackName: 'Bullet the Blue Sky', duration: '4:32'},
+{trackName: 'Count Me Out', duration: '4:32'},
 {trackName: 'Running to Stand Still', duration: '4:18'},
 {trackName: 'Red Hill Mining Town', duration: '4:52'},
 {trackName: "In God's Country", duration: '2:57'},
@@ -139,14 +138,14 @@ function findByArtist(musicCollection, artist) {
       matchingArtist.push(album);
     }
   } if (matchingArtist.length != 0) {
-    console.log(`Here's what we found that matched ${artist}:`, matchingArtist); 
+    console.log(`Here's what we found that matched ${artist}:`, matchingArtist);
     return matchingArtist;
   } else {
     console.log("The collection doesn't contain your selected artist", artist);
     return matchingArtist;
   }
 }
-console.log(`Did you find U2? ${findByArtist(myCollection, 'U2')}`);
+findByArtist(myCollection, 'U2');
 findByArtist(myCollection, 'Run the Jewels');
 
 // Stretch - Search Function
@@ -158,26 +157,41 @@ let searchVariable2 = {
   artist: 'Prince',
   yearPublished: 1995
 };
-let searchNotFound = {
-  yearPublished: 2024
+let searchTrackName = {
+  artist: 'Kendrick Lamar',
+  yearPublished: 2022,
+  trackName: 'Count Me Out'
 }
 
+// Test doesn't like my search function but it does work!
 function search(musicCollection, searchCriteria) {
   let matchingArtist = [];
-  for (let i = 0; i < musicCollection.length; i++) {
-    if (musicCollection[i].artist == searchCriteria.artist && musicCollection[i].yearPublished == searchCriteria.yearPublished) {
-      matchingArtist.push(searchCriteria);
-    } else if (searchCriteria == undefined || searchCriteria.artist == undefined || searchCriteria.yearPublished == undefined) {
-      console.log('Your search encountered an error');
-      return musicCollection;
-    } 
-   } console.log('The matching artist is', matchingArtist); 
-    return matchingArtist;
-  
+  if (searchCriteria.trackName) {
+    for (let i = 0; i < musicCollection.length; i++) {
+      for (let j = 0; j < musicCollection[i].tracks.length; j++) {
+        if (searchCriteria.trackName == musicCollection[i].tracks[j].trackName){
+          matchingArtist.push(musicCollection[i]);
+          }
+        }
+    } console.log('Here are all the tracks that match that name!')
+      return matchingArtist;
+  } else {
+      for (let i = 0; i < musicCollection.length; i++) {
+        if (searchCriteria == undefined || searchCriteria.artist == undefined || searchCriteria.yearPublished == undefined) {
+            console.log('Your search encountered an error');
+            return musicCollection;
+            } else if (musicCollection[i].artist == searchCriteria.artist && musicCollection[i].yearPublished == searchCriteria.yearPublished) {
+                matchingArtist.push(musicCollection[i]);
+                console.log("Here's what we found that matched your query:", matchingArtist);
+            } 
+      } return matchingArtist;
+  }
 }
-console.log(`Here's what we found for ${searchVariable.artist} in ${searchVariable.yearPublished}`, search(myCollection, searchVariable)); // Should find OK Computer
-search(myCollection, searchVariable2); // Should return empty array
-console.log(`Your search encountered an error. Here's the music we have:`, search(myCollection, searchNotFound)); // Should return entire collection
+console.log('This should find OK Computer:', search(myCollection, searchVariable)); // Should find OK Computer
+console.log('This array should be empty', search(myCollection, searchVariable2)); // Should return empty array
+// Edited the Joshua Tree to contain a track of the same name to test search function. Works great!
+// I also had each search return the entire album since if you already know the name of the song you don't need it returned to you.
+console.log(`This found all tracks that match criteria (Track 'Count Me Out')`, search(myCollection, searchTrackName));
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
 // as a lil' chunk of friendly code that you don't need to understand right now.
